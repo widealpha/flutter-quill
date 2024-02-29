@@ -928,8 +928,7 @@ class RenderEditor extends RenderEditableContainerBox
       sameSelection = nextSelection == selection;
     }
     if (sameSelection &&
-        cause != SelectionChangedCause.keyboard &&
-        _hasFocus) {
+        cause != SelectionChangedCause.keyboard) {
       return;
     }
     onSelectionChanged(nextSelection, cause);
