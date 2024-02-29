@@ -922,7 +922,15 @@ class RenderEditor extends RenderEditableContainerBox
     final focusingEmpty = nextSelection.baseOffset == 0 &&
         nextSelection.extentOffset == 0 &&
         !_hasFocus;
-    if (nextSelection == selection &&
+    final sameSelection;
+    if (cause == SelectionChangedCause.tap) {
+      sameSelection = nextSelection.baseOffset == selection.baseOffset
+          && nextSelection.extentOffset == selection.extentOffset
+          && nextSelection.isDirectional == selection.isDirectional;
+    } else {
+      sameSelection = nextSelection == selection;
+    }
+    if (sameSelection &&
         cause != SelectionChangedCause.keyboard &&
         !focusingEmpty) {
       return;
